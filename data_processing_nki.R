@@ -231,44 +231,8 @@ cls=gsub("0", "free", descrp[, 4])
 cls=gsub("1", "metasis", cls)
 cat(cls, file="new_exprs_entrez_id.cls", sep=" ", fill=FALSE, labels=NULL, append=T)
 
-###########################
-#ER negative expresion file
-write("#1.2", "new_exprs_entrez_er_neg.gct", append=F, sep="\t")
-write(paste(nrow(er_neg_exprs), ncol(er_neg_exprs), sep="\t"), "new_exprs_entrez_er_neg.gct", append=T, sep="\t")
-write.table(cbind(rep(NA, nrow(er_neg_exprs)), er_neg_exprs), "new_exprs_entrez_er_neg.gct", quote=F, append=T, sep="\t")
-
-#####ER negative class file
-write(paste(ncol(er_neg_exprs), 2, 1, sep=" "), "new_exprs_entrez_er_neg.cls", append=F, sep="\t")
-write("#free metasis", "new_exprs_entrez_er_neg.cls", append=T, sep="\t")
-
-neg_cls=gsub("0", "free", er_neg_df[, 4])
-neg_cls=gsub("1", "metasis", neg_cls)
-cat(rbind(neg_cls), file="new_exprs_entrez_er_neg.cls", sep=" ", fill=FALSE, labels=NULL, append=T)
-
-###########################
-#ER positive expresion file
-write("#1.2", "new_exprs_entrez_er_pos.gct", append=F, sep="\t")
-write(paste(nrow(er_pos_exprs), ncol(er_pos_exprs), sep="\t"), "new_exprs_entrez_er_pos.gct", append=T, sep="\t")
-write.table(cbind(rep(NA, nrow(er_pos_exprs)), er_pos_exprs), "new_exprs_entrez_er_pos.gct", quote=F, append=T, sep="\t")
-
-#####ER positive class file
-write(paste(ncol(er_pos_exprs), 2, 1, sep=" "), "new_exprs_entrez_er_pos.cls", append=F, sep="\t")
-write("#free metasis", "new_exprs_entrez_er_pos.cls", append=T, sep="\t")
-
-pos_cls=gsub("0", "free", cbind(er_pos_df[, 4]))
-pos_cls=gsub("1", "metasis", pos_cls)
-cat(pos_cls, file="new_exprs_entrez_er_pos.cls", sep=" ", fill=FALSE, labels=NULL, append=T)
 
 
-
-#sub_ind=c()
-#
-#for(i in 1:length(output.list)){
-#	sub_ind=c(sub_ind, which(names(output.list[i])==names(sub_t_stat))[output.list[i]])
-#}
-#
-#output_file=array_id_sel[sub_ind,-c(1,2)]
-#rownames(output_file)=array_id_sel[sub_ind,2]
 
 
 
@@ -312,33 +276,3 @@ cat(pos_cls, file="new_exprs_entrez_er_pos.cls", sep=" ", fill=FALSE, labels=NUL
 #
 #write.table(output_norm_file, "new_exprs_entrez_id.txt", quote=FALSE, row.name=T, col.name=T, sep="\t")
 #
-##substract ER positive/negative data
-#
-#descrp=read.table("descrp.txt", sep="\t", head=T)
-#
-#er_pos_exprs=output_file[, which(descrp[,10]==1)]
-#er_neg_exprs=output_file[, which(descrp[,10]==0)]
-#
-#output_pos_data<- round(t(apply(er_pos_exprs, 1, z_score)), 3)
-#output_neg_data<- round(t(apply(er_neg_exprs, 1, z_score)), 3)
-#
-#apply(output_pos_data, c(1), mean)
-#apply(output_pos_data, c(1), sd)
-#
-#apply(output_neg_data, c(1), mean)
-#apply(output_neg_data, c(1), sd)
-#
-#output_pos_file=cbind(array_id_sel[sub_ind, 1], output_pos_data)
-#output_neg_file=cbind(array_id_sel[sub_ind, 1], output_neg_data)
-#
-#dim(output_pos_file)
-#dim(output_neg_file)
-#
-#er_pos_df=descrp[which(descrp[,10]==1), ]
-#er_neg_df=descrp[which(descrp[,10]==0), ]
-#
-#write.table(output_pos_file, "new_exprs_entrez_er_pos.txt", quote=FALSE, row.name=T, col.name=T, sep="\t")
-#write.table(rbind(er_pos_df[, 4]), "new_exprs_entrez_er_pos_cls.txt", quote=FALSE, row.name=F, col.name=F, sep="\t")
-#
-#write.table(output_neg_file, "new_exprs_entrez_er_neg.txt", quote=FALSE, row.name=T, col.name=T, sep="\t")
-#write.table(rbind(er_neg_df[, 4]), "new_exprs_entrez_er_neg_cls.txt", quote=FALSE, row.name=F, col.name=F, sep="\t")
